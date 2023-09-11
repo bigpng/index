@@ -1,10 +1,3 @@
-<!DOCTYPE html> 
-  <html> 
-  <head> 
-     <link href="../css/prism.css" rel="stylesheet" /> 
-  </head> 
-  <body>
-<pre><code class="language-markdown">
 1. Functions can return other functions
 2. How to add sounds
 3. How to add Lottie Animation
@@ -417,7 +410,3 @@ fun PasswordField() {
     }  
 }
 ```
-</code></pre>
-	  <script src="../scripts/prism.js"></script> 
-  </body> 
-  </html>
