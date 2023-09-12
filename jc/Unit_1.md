@@ -8,8 +8,7 @@
 8. Scaffold, Bottom Bar and Top Bar
 9. Selectable Text
 10. Swipeable Tab
-11. Navigation
-12. Textfields
+11. Textfields
 ### ***Functions can return other functions***
 ```kotlin
 fun main() {
@@ -322,46 +321,6 @@ fun TabBabe() {
     }
 }
 ```
-### ***Navigation***
-Step 1: Put this in MainActivity.kt:
-```kotlin
-// Note: Required Dependency: implementation ("androidx.navigation:navigation-compose:2.7.2")
-val navController = rememberNavController()  
-NavGraph(navController = navController)
-```
-Step 2: Build fun (Screens)
-```kotlin
-// Home Screen
-@Composable  
-fun HomeScreen(navController: NavController) {
-	... Button(onClick = {  navController.navigate(Screens.Login.route)  })
-}
-// Login Screen
-fun LoginScreen(navController: NavController) {
-	... Button(onClick = {  navController.navigate(Screens.Home.route)  })
-}
-
-// Screens file
-sealed class Screens(val route: String) {  
-    object Login: Screens("login_screen")  
-    object Home: Screens("home_screen")  
-}
-
-// NavGraph.kt
-@Composable  
-fun NavGraph (navController: NavHostController){  
-    NavHost(navController = navController,  
-        startDestination = Screens.Login.route)  
-    {  
-        composable(route = Screens.Login.route){  
-            LoginScreen(navController)  
-        }  
-        composable(route = Screens.Home.route){  
-            HomeScreen(navController)  
-        }  
-    }
-}
-```
 ### ***Textfields***
 ```kotlin
 @Composable  
@@ -371,7 +330,7 @@ fun SimpleOutlinedTextFieldSample() {
         horizontalAlignment = Alignment.CenterHorizontally) {  
         OutlinedTextField(  
             value = text,  
-            onValueChange = { text = it },  
+            onValueChange = { if (it.length <= 17) text = it },  /** Limit on number of characters */
             label = { Text("Email") },  
             singleLine = true,  
             leadingIcon = { Icon(imageVector = Icons.Filled.Email, contentDescription = "Email") },  
